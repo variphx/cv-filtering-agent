@@ -9,6 +9,7 @@ dependencies = [
     "python-dotenv",
     "pydantic",
     "langchain-core",
+    "langgraph",
     "google-genai",
     "mcp[cli]",
     "httpx",
