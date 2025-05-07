@@ -7,10 +7,7 @@ class MessageInterface:
     def __init__(self):
         pass
 
-    def build_message(
-        self,
-        message_name: str = "my_message"
-    ) -> Type[BaseMessage]:
+    def build_message(self, message_name: str = "my_message") -> Type[BaseMessage]:
 
         # Make sure message_name is a string
         notice = "'message_name' variable must be a string"
@@ -21,10 +18,7 @@ class MessageInterface:
             type: str = Field(message_name)
 
             def __init__(self, content: str, **kwargs):
-                super().__init__(
-                    content=content,
-                    **kwargs
-                )
+                super().__init__(content=content, **kwargs)
 
             def __repr__(self):
                 return f"{message_name.title()}Message(content={self.content})"

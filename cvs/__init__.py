@@ -140,7 +140,9 @@ class ProfessionalAssociation(BaseModel):
     membership_start_date: Optional[datetime] = Field(
         None, description="Membership start date"
     )
-    membership_end_date: Optional[datetime] = Field(None, description="Membership end date")
+    membership_end_date: Optional[datetime] = Field(
+        None, description="Membership end date"
+    )
 
     class Config:
         title = "Professional Association"
@@ -168,7 +170,9 @@ class Award(BaseModel):
     issuing_organization: Optional[str] = Field(
         None, description="Awarding organization"
     )
-    date_received: Optional[datetime] = Field(None, description="Date award was received")
+    date_received: Optional[datetime] = Field(
+        None, description="Date award was received"
+    )
 
     class Config:
         title = "Award"
@@ -199,7 +203,9 @@ class VolunteerExperience(BaseModel):
         None, description="Volunteer organization name"
     )
     role: Optional[str] = Field(None, description="Role or position")
-    start_date: Optional[datetime] = Field(None, description="Start date of volunteer work")
+    start_date: Optional[datetime] = Field(
+        None, description="Start date of volunteer work"
+    )
     end_date: Optional[datetime] = Field(None, description="End date of volunteer work")
     key_contributions: List[str] = Field(
         default_factory=list, description="Key contributions during volunteering"
@@ -214,9 +220,7 @@ class ReferenceContactInformation(BaseModel):
     """Contact information for a reference."""
 
     phone_number: Optional[str] = Field(None, description="Reference's phone number")
-    email_address: Optional[str] = Field(
-        None, description="Reference's email address"
-    )
+    email_address: Optional[str] = Field(None, description="Reference's email address")
 
     class Config:
         title = "Reference Contact Information"

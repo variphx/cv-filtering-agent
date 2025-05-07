@@ -3,6 +3,7 @@ from google import genai
 
 from ..cvs import CurriculumVitae
 
+
 class CVParser:
     def __init__(self):
         self._prompt = """
@@ -21,7 +22,6 @@ Extract the information of the candidate in the following CV, be concise and pre
 """
         self._client = genai.Client()
 
-
     def parse(self, path: str | Path):
         cv_file = self._client.files.upload(file=path)
         response = self._client.models.generate_content(
@@ -30,7 +30,7 @@ Extract the information of the candidate in the following CV, be concise and pre
             config={
                 "response_mime_type": "application/json",
                 "response_schema": CurriculumVitae,
-            }
+            },
         )
 
         return response

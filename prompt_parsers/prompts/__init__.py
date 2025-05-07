@@ -35,16 +35,16 @@ class Form:
             positions_want_to_employ=self.placeholder_dict[List[str]],
             degree=self.placeholder_dict[List[str]],
             at_least_experience=self.placeholder_dict[int],
-            foreign_languages=self.placeholder_dict[List[str]]
+            foreign_languages=self.placeholder_dict[List[str]],
         )
         musthave = MustHave(
             job_related_skills=self.placeholder_dict[List[str]],
-            something_else=self.placeholder_dict[List[str]]
+            something_else=self.placeholder_dict[List[str]],
         )
         fullform = FullForm(
             background_cv=backgroundcv,
             must_have=musthave,
-            nice_to_have=self.placeholder_dict[List[str]]
+            nice_to_have=self.placeholder_dict[List[str]],
         )
 
         return fullform.model_dump_json()
