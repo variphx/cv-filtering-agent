@@ -1,6 +1,6 @@
 from typing import List, Optional
-from datetime import date
-from pydantic import BaseModel, EmailStr, HttpUrl, Field
+from datetime import datetime
+from pydantic import BaseModel, Field
 
 
 class Location(BaseModel):
@@ -17,9 +17,9 @@ class Location(BaseModel):
 class SocialMediaProfiles(BaseModel):
     """Links to social media profiles."""
 
-    github: Optional[HttpUrl] = Field(None, description="GitHub profile URL")
-    behance: Optional[HttpUrl] = Field(None, description="Behance profile URL")
-    other: List[HttpUrl] = Field(
+    github: Optional[str] = Field(None, description="GitHub profile URL")
+    behance: Optional[str] = Field(None, description="Behance profile URL")
+    other: List[str] = Field(
         default_factory=list, description="Other social media links"
     )
 
@@ -34,10 +34,10 @@ class ContactInformation(BaseModel):
     full_name: str = Field(..., description="Full name")
     job_title: Optional[str] = Field(None, description="Current job title")
     phone_number: Optional[str] = Field(None, description="Phone number")
-    email_address: EmailStr = Field(..., description="Email address")
+    email_address: str = Field(..., description="Email address")
     location: Location = Field(..., description="Current location")
-    linkedin: Optional[HttpUrl] = Field(None, description="LinkedIn profile URL")
-    professional_website: Optional[HttpUrl] = Field(
+    linkedin: Optional[str] = Field(None, description="LinkedIn profile URL")
+    professional_website: Optional[str] = Field(
         None, description="Professional website URL"
     )
     social_media_profiles: SocialMediaProfiles = Field(
@@ -55,8 +55,8 @@ class WorkExperience(BaseModel):
     job_title: Optional[str] = Field(None, description="Title of the job position")
     company_name: Optional[str] = Field(None, description="Company name")
     location: Location = Field(..., description="Location of the company")
-    start_date: Optional[date] = Field(None, description="Start date of employment")
-    end_date: Optional[date] = Field(None, description="End date of employment")
+    start_date: Optional[datetime] = Field(None, description="Start date of employment")
+    end_date: Optional[datetime] = Field(None, description="End date of employment")
     responsibilities_and_achievements: List[str] = Field(
         default_factory=list, description="Tasks and accomplishments"
     )
@@ -75,7 +75,8 @@ class Education(BaseModel):
         None, description="Name of the educational institution"
     )
     location: Location = Field(..., description="Institution location")
-    graduation_date: Optional[date] = Field(None, description="Graduation date")
+    enrollment_date: Optional[datetime] = Field(None, description="Enrollment date")
+    graduation_date: Optional[datetime] = Field(None, description="Graduation date")
     honors_or_awards: List[str] = Field(
         default_factory=list, description="Academic honors or awards"
     )
@@ -122,7 +123,7 @@ class Certification(BaseModel):
     issuing_organization: Optional[str] = Field(
         None, description="Issuing organization"
     )
-    date_obtained: Optional[date] = Field(
+    date_obtained: Optional[datetime] = Field(
         None, description="Date certification was obtained"
     )
 
@@ -136,10 +137,10 @@ class ProfessionalAssociation(BaseModel):
 
     organization: Optional[str] = Field(None, description="Association name")
     role: Optional[str] = Field(None, description="Role within the association")
-    membership_start_date: Optional[date] = Field(
+    membership_start_date: Optional[datetime] = Field(
         None, description="Membership start date"
     )
-    membership_end_date: Optional[date] = Field(None, description="Membership end date")
+    membership_end_date: Optional[datetime] = Field(None, description="Membership end date")
 
     class Config:
         title = "Professional Association"
@@ -153,7 +154,7 @@ class Publication(BaseModel):
     publication_name: Optional[str] = Field(
         None, description="Name of the publication source"
     )
-    publication_date: Optional[date] = Field(None, description="Publication date")
+    publication_date: Optional[datetime] = Field(None, description="Publication date")
 
     class Config:
         title = "Publication"
@@ -167,7 +168,7 @@ class Award(BaseModel):
     issuing_organization: Optional[str] = Field(
         None, description="Awarding organization"
     )
-    date_received: Optional[date] = Field(None, description="Date award was received")
+    date_received: Optional[datetime] = Field(None, description="Date award was received")
 
     class Config:
         title = "Award"
@@ -198,8 +199,8 @@ class VolunteerExperience(BaseModel):
         None, description="Volunteer organization name"
     )
     role: Optional[str] = Field(None, description="Role or position")
-    start_date: Optional[date] = Field(None, description="Start date of volunteer work")
-    end_date: Optional[date] = Field(None, description="End date of volunteer work")
+    start_date: Optional[datetime] = Field(None, description="Start date of volunteer work")
+    end_date: Optional[datetime] = Field(None, description="End date of volunteer work")
     key_contributions: List[str] = Field(
         default_factory=list, description="Key contributions during volunteering"
     )
@@ -213,7 +214,7 @@ class ReferenceContactInformation(BaseModel):
     """Contact information for a reference."""
 
     phone_number: Optional[str] = Field(None, description="Reference's phone number")
-    email_address: Optional[EmailStr] = Field(
+    email_address: Optional[str] = Field(
         None, description="Reference's email address"
     )
 
