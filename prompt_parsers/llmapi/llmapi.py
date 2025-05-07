@@ -7,7 +7,7 @@ def cal_gemini_llm(model, api):
     return client, chat
 
 
-class LLmAPiCalling:
+class LlmApiCalling:
     def __init__(self):
         self.api_dict = {
             "gemini-2.0-flash": "AIzaSyCaHjMpBgDv_ZcfCXje5JEWzoU00Yxe0g8"
@@ -17,7 +17,7 @@ class LLmAPiCalling:
         valid_api = "value 0: Gemini 2-0-flash API"
         print(f"Available APIs:\n{valid_api}")
 
-    def choose_api(self, what_llm: int = 0, custom_api: str = None):
+    def choose_api(self, what_llm: int = 0, custom_api: str |None = None):
 
         # Make sure param 'what_llm' is an integer number
         notice1 = ("'what_llm' must be an integer, call 'help' method to get "

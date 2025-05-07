@@ -1,6 +1,6 @@
 from .promptform import Form
 from .messages import MessagesOfAgent
-from .llmapi import LLmAPiCalling
+from .llmapi import LlmApiCalling
 from .messages.insidetools import format_title_message, format_message
 
 # from IPython.display import Image, display
@@ -11,7 +11,7 @@ class Graph:
     def __init__(self):
 
         # LLM API
-        self.client, self.chat = LLmAPiCalling().choose_api()
+        self.client, self.chat = LlmApiCalling().choose_api()
 
         # Messages
         self.messages_name = ['human', 'system', 'bot']

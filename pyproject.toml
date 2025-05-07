@@ -1,0 +1,15 @@
+[project]
+name = "cv-filtering-agent"
+version = "0.1.0"
+description = ""
+authors = [{ name = "variphx", email = "variphx@gmail.com" }]
+readme = "README.md"
+requires-python = ">=3.11,<4.0"
+dependencies = [
+    "python-dotenv",
+    "pydantic",
+    "langchain-core",
+    "google-genai",
+    "mcp[cli]",
+    "httpx",
+]

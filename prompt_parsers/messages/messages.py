@@ -17,8 +17,8 @@ class MessageInterface:
         assert isinstance(message_name, str), notice
 
         # Create Message
-        class TheMessage(BaseMessage):
-            type: Literal[message_name] = Field(message_name)
+        class Message(BaseMessage):
+            type: str = Field(message_name)
 
             def __init__(self, content: str, **kwargs):
                 super().__init__(
@@ -29,7 +29,7 @@ class MessageInterface:
             def __repr__(self):
                 return f"{message_name.title()}Message(content={self.content})"
 
-        return TheMessage
+        return Message
 
 
 class MessagesOfAgent:
