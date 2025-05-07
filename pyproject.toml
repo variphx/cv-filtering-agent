@@ -5,11 +5,12 @@ description = ""
 authors = [{ name = "variphx", email = "variphx@gmail.com" }]
 readme = "README.md"
 requires-python = ">=3.11,<4.0"
-dependencies = ["markitdown[pdf,docx]"]
-
-[tool.poetry]
-package-mode = false
-
-[build-system]
-requires = ["poetry-core>=2.0.0,<3.0.0"]
-build-backend = "poetry.core.masonry.api"
+dependencies = [
+    "python-dotenv",
+    "pydantic[email]",
+    "langchain-core",
+    "langchain-google-genai",
+    "langchain",
+    "langgraph",
+    "google-genai",
+]
