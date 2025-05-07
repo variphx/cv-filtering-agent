@@ -1,26 +1,11 @@
 from pathlib import Path
-from langchain_core.prompts import ChatPromptTemplate
-from langchain_google_genai import ChatGoogleGenerativeAI
-
 from google import genai
 
 from ..cvs import CurriculumVitae
 
 class CVParser:
     def __init__(self):
-        self._prompt = ChatPromptTemplate([
-            ("system", "You are a skillful headhunter who reads CVs and extracts relevant information of the candidate. Your task is to analyze the candidate's CV and extract their skills, experience, education, contact information and further information should they have been mentioned."),
-            ("user", "Extract the information of the candidate in the following CV: {cv_file}")
-        ])
-        self._structured_llm = ChatGoogleGenerativeAI(model="models/gemini-flash-2.0").with_structured_output(CurriculumVitae)
-        self._runtime = self._prompt | self._structured_llm
-
-        self._client = genai.Client()
-
-
-    def parse(self, path: str | Path):
-        cv_file = self._client.files.upload(file=path)
-        prompt = """
+        self._prompt = """
 <|SYSYEM|>
 You are a skillful headhunter who reads CVs and extracts relevant information of the candidate.
 Your task is to analyze the candidate's CV and extract their skills, experience, education, contact information and further information should they have been mentioned.
@@ -34,9 +19,14 @@ Examples:
 <|SPECIFICATION|>
 Extract the information of the candidate in the following CV, be concise and precise.
 """
+        self._client = genai.Client()
+
+
+    def parse(self, path: str | Path):
+        cv_file = self._client.files.upload(file=path)
         response = self._client.models.generate_content(
             model="models/gemini-2.0-flash",
-            contents=[prompt, cv_file],
+            contents=[self._prompt, cv_file],
             config={
                 "response_mime_type": "application/json",
                 "response_schema": CurriculumVitae,
